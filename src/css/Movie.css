@@ -1,0 +1,63 @@
+.movieimg-container{
+    width: 1000px;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    border: 2px solid rgb(72, 59, 86);
+    background-color: rgb(72, 59, 86);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.movie-backdrops{
+    width: 100%;
+}
+
+.details{
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.details p{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.details h4{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.details form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.details form textarea{
+    width: 300px;
+    height: 100px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.details form button{
+    width: 80px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 5px;
+}

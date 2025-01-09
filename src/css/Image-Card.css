@@ -1,0 +1,41 @@
+.card-container{
+    max-width: 280px;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: rgb(72, 59, 86);
+    border: 1px solid rgb(72, 59, 86);
+}
+
+.image-main {
+    width: 100%;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.image-main {
+    transition: transform 0.3s ease;
+}
+
+.image-main:hover {
+    transform: scale(1.05);
+}
+
+.img-details{
+    padding: 8px;
+}
+
+.movie-title{
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.generes-container {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 5px;
+}

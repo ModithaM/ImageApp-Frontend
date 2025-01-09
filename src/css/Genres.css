@@ -1,0 +1,11 @@
+.genres-container{
+    max-width: fit-content;
+    background-color: aliceblue;
+    color: black;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.genres-container:hover{
+    background-color: rgb(188, 198, 201);
+}
