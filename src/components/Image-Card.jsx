@@ -1,20 +1,21 @@
 import "../css/Image-Card.css";
 import Generes from "./Genres";
 
-function ImageCard({ movie }) {
+function ImageCard({ imagedetails }) {
   return (
     <div className="card-container">
       <img
         className="image-main"
-        src="https://image.tmdb.org/t/p/w500/1NqwE6LP9IEdOZ57NCT51ftHtWT.jpg"
+        src={imagedetails.poster}
+        alt="movie-poster"
       ></img>
       <div className="img-details">
-        <h3 className="movie-title">Puss IN Boots 2024</h3>
-        <p>2024/11/30</p>
+        <h3 className="movie-title">{imagedetails.title}</h3>
+        <p>{imagedetails.releaseDate}</p>
         <div className="generes-container">
-          <Generes />
-          <Generes />
-          <Generes />
+          {imagedetails.genres.map((genre, index) => (
+            <Generes key={index} genre={genre} />
+          ))}
         </div>
       </div>
     </div>
