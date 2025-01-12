@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./css/App.css";
 import Home from "./pages/Home";
@@ -10,7 +9,7 @@ function App() {
       <div className="main-container">
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/Movie" element={<Movie />}></Route>
+          <Route path="/Movie/:id" element={<Movie />}></Route>
         </Routes>
       </div>
     </>
