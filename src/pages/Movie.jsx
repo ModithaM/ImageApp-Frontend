@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "../css/Movie.css";
 import Generes from "../components/Genres";
-import { getSingleImage } from "../services/apiService";
+import { getSingleImage, postReview } from "../services/apiService";
 
 function Movie() {
   const { id } = useParams(); // This is a hook that allows us to access the URL parameters (in this case, the movie ID)
   const [singleMovie, setSingleMovie] = useState({});
+  const [reviews, setReviewsId] = useState([]);
+  const [reviewInput, setReviewInput] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [loading, setLoading] = useState(true);
 
@@ -15,7 +17,11 @@ function Movie() {
     const loadImage = async () => {
       try {
         const response = await getSingleImage(id); // Fetch the movie details using the ID
-        setSingleMovie(response);
+        setSingleMovie(response); // Set the movie details
+        // If the response contains reviews, set the reviews state
+        if (response.reviewIds) {
+          setReviewsId(response.reviewIds);
+        }
       } catch (error) {
         console.log(error);
       } finally {
@@ -37,6 +43,27 @@ function Movie() {
     return () => clearInterval(intervalId);
   }, [singleMovie.backdrops]);
 
+  // This function will handle the form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      reviewBody: reviewInput,
+      imdbId: singleMovie.imdbId,
+    };
+
+    try {
+      const response = await postReview(formData); // Post the review
+      setReviewsId((reviews) => [...reviews, response]); // Add the new review to the list of reviews
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setReviewInput(""); // Clear the input field
+    }
+  };
+
+  // TODO : map reviews And display them
+
   return (
     <>
       <h1 className="heading">{singleMovie.title}</h1>
@@ -54,13 +81,10 @@ function Movie() {
               <b>Release Date:</b> {singleMovie.releaseDate}
             </p>
             <h4>Add Reviews :</h4>
-            <form>
-              <input
-                type="hidden"
-                name="imdbid"
-                value={singleMovie.imdbId}
-              ></input>
+            <form onSubmit={handleSubmit}>
               <textarea
+                value={reviewInput}
+                onChange={(e) => setReviewInput(e.target.value)}
                 className="review"
                 name="review"
                 id="review"
@@ -81,6 +105,16 @@ function Movie() {
             </div>
           </div>
         </div>
+        {reviews.length > 0 && (
+          <div className="reviews">
+            <h4>Reviews :</h4>
+            {reviews.map((review) => (
+              <div key={review.id} className="review">
+                <p>{review.body}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

@@ -9,3 +9,21 @@ export const getSingleImage = async (id) => {
     const data = await response.json();
     return data;
 };
+
+export const postReview = async (formData) => {
+    const response = await fetch("http://localhost:8080/api/v1/reviews" , {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        });
+
+    if(response.ok){
+        const result = await response.json();
+        return result;
+    }
+    else{
+        throw new Error("Failed to post review");
+    }
+};

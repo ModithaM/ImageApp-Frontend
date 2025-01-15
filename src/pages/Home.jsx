@@ -11,7 +11,6 @@ function Home() {
       try {
         const response = await getAllImages(); // dont miss await again ;/
         setImages(response);
-        console.log("API Response:", response);
       } catch (error) {
         console.log("Fuuuuuuck");
         console.log(error);
